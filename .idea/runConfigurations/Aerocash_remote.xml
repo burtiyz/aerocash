@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Aerocash-remote" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+    <node-js-remote-debug />
+    <method />
+  </configuration>
+</component>
