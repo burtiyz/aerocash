@@ -8,7 +8,7 @@
 * Install client dependencies: `bower install`
 * Start mongoDb: `mongod --smallfiles`
 * Start the server: `grunt serve`
-* Open the app: `https://aerocash-<username>.c9.io:8080/`
+* Open the app: `https://aerocash-<username>.c9.io:8080/` (where <username> is your c9 account)
 
 #### Yeoman cheatsheet  
 * Add a new API endpoint (server): `yo angular-fullstack:endpoint message` this will generate a model and a controller to interact with that model:
