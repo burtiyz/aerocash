@@ -23,5 +23,7 @@
   * `heroku addons:create mongolab` for DB setup on heroku
   
 #### Git cheatsheet
-  * Commit on you local branch: `git commit -m 'git message'`
+  * Stage changes for commit: `git add .`
+  * Commit on you local repo: `git commit -m 'commit message'`
+  * Push changes to remote repo: `git push origin master`
   * Make a pull request: `git pull --rebase origin master` 
