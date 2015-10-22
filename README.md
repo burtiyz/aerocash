@@ -21,3 +21,7 @@
 * Heroku deployment:
   * `yo angular-fullstack:heroku` to deploy the app on heroku
   * `heroku addons:create mongolab` for DB setup on heroku
+  
+#### Git cheatsheet
+  * Commit on you local branch: `git commit -m 'git message'`
+  * Make a pull request: `git pull --rebase origin master` 
