@@ -27,3 +27,4 @@
   * Commit on you local repo: `git commit -m 'commit message'`
   * Push changes to remote repo: `git push origin master`
   * Make a pull request: `git pull --rebase origin master` 
+  * Fetch changes (no need to commit yours first): `git fetch origin`
