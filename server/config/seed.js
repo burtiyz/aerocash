@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var PaymentDetails = require('../api/paymentDetails/paymentDetails.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -27,6 +28,9 @@ Thing.find({}).remove(function() {
   },{
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+  }, function(err) {
+     if (err) { console.log(err); }
+     console.log('Finished populating things');
   });
 });
 
@@ -42,8 +46,29 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
-      console.log('finished populating users');
+  }, function(err) {
+      if (err) { console.log(err); }
+      console.log('Finished populating users');
+    }
+  );
+});
+
+PaymentDetails.find({}).remove(function() {
+  PaymentDetails.create({
+    paymentName: "MyPayment1",
+    fromAccount: "123456789",
+    phoneNumber: "0745111222",
+    startDate:  Date.now(),
+    expDate: Date.now()
+  }, {
+    paymentName: "MyPayment2",
+    fromAccount: "987654321",
+    phoneNumber: "0763222111",
+    startDate:  Date.now(),
+    expDate: Date.now()
+  }, function(err) {
+     if (err) { console.log(err); }
+      console.log('Finished populating MyPayments');
     }
   );
 });
