@@ -7,14 +7,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">aerocash</a>
+      <a href="/" class="navbar-brand">Aerocash</a>
     </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main" >
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link), dropdown: item.submenu}">
+          <a ng-if="!item.submenu && isAuthorized(item)" ng-href="{{item.link}}">
+            {{item.title}}
+          </a>
+          <a ng-if="item.submenu && isAuthorized(item)" ng-href="{{item.link}}" class="dropdown-toggle">
+            {{item.title}} <b class="caret"></b>
+          </a>
+          <ul ng-if="item.submenu && isAuthorized(item)" class="dropdown-menu">
+            <li ng-repeat="subItem in item.submenu">
+              <a ng-href="{{subItem.link}}">{{subItem.title}}</a>
+            </li>
+          </ul>
         </li>
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
