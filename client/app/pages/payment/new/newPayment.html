@@ -1,1 +1,43 @@
-<h1>TEST</h1>
+<form ng-submit="!payment.model.hasChanges() || payment.save()">
+  <div class="row">
+    <div class="col-md-2">
+      <label for="name">Name</label>
+    </div>
+    <div class="col-md-2">
+      <input id="name" ng-model="payment.model.paymentName" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label for="account">From Account</label>
+    </div>
+    <div class="col-md-2">
+      <input id="account" ng-model="payment.model.fromAccount" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label for="phone">Phone Number</label>
+    </div>
+    <div class="col-md-2">
+      <input id="phone" ng-model="payment.model.phoneNumber" type="tel" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label for="start">Start Date</label>
+    </div>
+    <div class="col-md-2">
+      <input id="start" ng-model="payment.model.startDate" type="date">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <label for="expiry">Expiry Date</label>
+    </div>
+    <div class="col-md-2">
+      <input id="expiry" ng-model="payment.model.expDate" type="date" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-default" ng-disabled="!payment.model.hasChanges()">Save</button>
+</form>

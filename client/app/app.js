@@ -6,6 +6,7 @@ angular.module('aerocashApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
+  'aerocashApp.navigation',
   'aerocashApp.payment'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -15,6 +16,8 @@ angular.module('aerocashApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
+
+  .constant('restBasePath','/api/')
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {

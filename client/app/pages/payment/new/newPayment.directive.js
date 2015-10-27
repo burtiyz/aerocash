@@ -9,7 +9,25 @@
     return {
       restrict: 'E',
       templateUrl: 'app/pages/payment/new/newPayment.html',
-      scope: {}
+      scope: {},
+      controller: ['$state', 'Navigation', 'Payment', function ($state, Navigation, Payment) {
+        var _ctrl = this;
+        this.model = null;
+
+        this.save = function(){
+          this.model.save(function(){
+            console.log('new payment successfully created');
+            Navigation.openMain();
+          });
+        };
+
+        var _init = function () {
+          _ctrl.model = Payment.createModel();
+        };
+
+        _init();
+      }],
+      controllerAs: 'payment'
     }
   });
 })();
