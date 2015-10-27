@@ -17,7 +17,8 @@ var paymentDetailsSchema = new Schema({
   fromAccount: String,
   phoneNumber: Number,
   startDate: { type: Date, default: Date.now },
-  expDate: Date
+  expDate: Date,
+  user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 module.exports = mongoose.model('PaymentDetails', paymentDetailsSchema);
