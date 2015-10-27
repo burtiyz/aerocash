@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var PaymentDetails = require('./paymentDetails.model');
-var telerivet = require("./telerivet")
+var telerivet = require("./telerivet");
 
 // Get list of paymentDetailss
 exports.index = function(req, res) {
@@ -56,13 +56,13 @@ exports.destroy = function(req, res) {
   });
 };
 
-// helper function to send the SMS; 
+// helper function to send the SMS;
 // currently called from the index function, for testing purposes;
 // call will be adjusted when the proper api calls are developed
 function sendSMS(req, res){
-    
+
     // my number  var number = '421919325773';
-    
+
     //  Maxim    var number = '421944556944';
     // Manu var number = '40740156733';
     // Calin var number = '40762234111';
