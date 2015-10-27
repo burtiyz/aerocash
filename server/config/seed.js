@@ -8,6 +8,8 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var PaymentDetails = require('../api/paymentDetails/paymentDetails.model');
+var CustomerInfo = require('../api/customerInfo/customerInfo.model');
+var ConfirmPayment = require('../api/confirmPayment/confirmPayment.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -34,24 +36,7 @@ Thing.find({}).remove(function() {
   });
 });
 
-User.find({}).remove(function() {
-  User.create({
-    provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'test'
-  }, {
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, function(err) {
-      if (err) { console.log(err); }
-      console.log('Finished populating users');
-    }
-  );
-});
+
 
 PaymentDetails.find({}).remove(function() {
   PaymentDetails.create({
@@ -69,6 +54,36 @@ PaymentDetails.find({}).remove(function() {
   }, function(err) {
      if (err) { console.log(err); }
       console.log('Finished populating MyPayments');
+    }
+  );
+});
+
+CustomerInfo.find({}).remove(function() {
+  CustomerInfo.create({
+    name: "Marius",
+    account1Number: "0000985519553",
+    account1Balance: "2355.21",
+    account2Number:  "0000985517756",
+    account2Balance: "1200.50"
+  }, {
+    name: "Maxim",
+    account1Number: "00009855171234",
+    account1Balance: "3222.49",
+    account2Number:  "0000985652987",
+    account2Balance: "700.70"
+  }, function(err) {
+     if (err) { console.log(err); }
+      console.log('Finished populating Customer Information');
+    }
+  );
+});
+
+ConfirmPayment.find({}).remove(function() {
+  ConfirmPayment.create({
+    // data generation is handled in the model definition
+    }, function(err) {
+     if (err) { console.log(err); }
+      console.log('Finished populating Payment Confirmation Information');
     }
   );
 });
