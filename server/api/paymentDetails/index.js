@@ -6,6 +6,7 @@ var controller = require('./paymentDetails.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/user/:userId', controller.payments);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

@@ -13,6 +13,13 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of paymentDetails for userId
+exports.payments = function(req, res) {
+  //TODO implementetgeasdas
+  console.log('payments for ' + req.params.userId);
+  return res.status(200).json({});
+};
+
 // Get a single paymentDetails
 exports.show = function(req, res) {
   PaymentDetails.findById(req.params.id, function (err, paymentDetails) {
@@ -63,7 +70,7 @@ function sendSMS(req, res){
 
     // my number  var number = '421919325773';
 
-    //  Maxim    
+    //  Maxim
     // var number = '421944556944';
     // Manu var number = '40740156733';
     // Calin var number = '40762234111';
