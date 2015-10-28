@@ -16,6 +16,7 @@
         this.phoneNumber = json.phoneNumber;
         this.startDate = json.startDate;
         this.expDate = json.expDate;
+        this.user = json.user;
 
         this._paymentName = json.paymentName;
         this._fromAccount = json.fromAccount;
@@ -28,6 +29,7 @@
         this.phoneNumber = null;
         this.startDate = null;
         this.expDate = null;
+        this.user = null;
 
         this._paymentName = null;
         this._fromAccount = null;
@@ -51,7 +53,8 @@
         fromAccount: this.fromAccount,
         phoneNumber: this.phoneNumber,
         startDate: this.startDate,
-        expDate: this.expDate
+        expDate: this.expDate,
+        user: this.user
       }
     };
 
@@ -60,8 +63,8 @@
     };
 
     return {
-      createModel: function (json) {
-        return new PaymentModel(json);
+      create: function (user) {
+        return new PaymentModel({user: user});
       }
     }
   }]);

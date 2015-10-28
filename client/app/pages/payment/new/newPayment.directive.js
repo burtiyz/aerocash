@@ -10,20 +10,20 @@
       restrict: 'E',
       templateUrl: 'app/pages/payment/new/newPayment.html',
       scope: {},
-      controller: ['$state', 'Navigation', 'Payment', function ($state, Navigation, Payment) {
+      controller: ['Auth', 'Navigation', 'Payment', function (Auth, Navigation, Payment) {
         var _ctrl = this;
         this.model = null;
 
-        this.save = function(){
-          this.model.save(function(){
+        this.save = function () {
+          this.model.save(function () {
             console.log('new payment successfully created');
             Navigation.openMain();
           });
         };
 
-        var _init = function () {
-          _ctrl.model = Payment.createModel();
-        };
+        function _init() {
+          _ctrl.model = Payment.create(Auth.getCurrentUser()._id);
+        }
 
         _init();
       }],
