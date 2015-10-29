@@ -16,9 +16,20 @@ var paymentDetailsSchema = new Schema({
   paymentName: String,
   fromAccount: String,
   phoneNumber: Number,
-  startDate: { type: Date, default: Date.now },
+  startDate: Date,
   expDate: Date,
   user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-module.exports = mongoose.model('PaymentDetails', paymentDetailsSchema);
+paymentDetailsSchema.statics.findPaymentsForUser = function(userId, callback){
+  this.find({ user: userId }, function(err, payments){
+    if (err) { console.log(err); }
+    //console.log('Payments for user ' + userId + ' are: ' + payments);
+    return callback(payments);
+  });
+};
+
+var PaymentDetails = mongoose.model('PaymentDetails', paymentDetailsSchema);
+
+module.exports = PaymentDetails;
+

@@ -39,18 +39,31 @@ Thing.find({}).remove(function() {
 
 
 PaymentDetails.find({}).remove(function() {
+  
+  var user = new User({
+    provider: 'local',
+    name: 'Test User',
+    email: 'test@test.com',
+    password: 'password',
+    salt: 'salt',
+    role: 'test'
+  });
+  
   PaymentDetails.create({
-    paymentName: "MyPayment1",
+    paymentName: "MyPayment1", 
     fromAccount: "123456789",
     phoneNumber: "0745111222",
-    startDate:  Date.now(),
-    expDate: Date.now()
-  }, {
+    startDate:  Date.now(), 
+    expDate: Date.now() ,
+//    user: user
+   },      
+   {
     paymentName: "MyPayment2",
     fromAccount: "987654321",
     phoneNumber: "0763222111",
     startDate:  Date.now(),
-    expDate: Date.now()
+    expDate: Date.now(),
+//    user: user
   }, function(err) {
      if (err) { console.log(err); }
       console.log('Finished populating MyPayments');

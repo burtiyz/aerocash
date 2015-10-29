@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var PaymentDetails = require('./paymentDetails.model');
+var  User = require('../user/user.model');
 var telerivet = require("./telerivet");
 
 // Get list of paymentDetailss
@@ -15,9 +16,20 @@ exports.index = function(req, res) {
 
 // Get list of paymentDetails for userId
 exports.payments = function(req, res) {
-  //TODO implementetgeasdas
-  console.log('payments for ' + req.params.userId);
-  return res.status(200).json({});
+  //  Search the users database for the ID of the callback parameter;
+  //  With the object ID, search the payments database for all the payments
+  //  created with that user; 
+  // Logic implemented was to search for User name only;
+  console.log('Retrieving payments for ' + req.params.userId);
+  
+  User.findObjectIdByUserName(req.params.userId, function(response){
+    //callback(response);    
+    //console.log("Retrieved Id "+response._id);
+      PaymentDetails.findPaymentsForUser(response._id, function(err, paymentDetailss){
+        if(err) { return handleError(res, err); }
+        return res.status(200).json(paymentDetailss);
+      });
+  });
 };
 
 // Get a single paymentDetails
