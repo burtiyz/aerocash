@@ -16,6 +16,11 @@ angular.module('aerocashApp')
             title: 'New',
             'link': '/payment/new',
             'loggedIn': true
+          },
+          {
+            title: 'History',
+            link: '/payment/history',
+            'loggedIn': true
           }
         ]
       }

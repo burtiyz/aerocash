@@ -3,7 +3,7 @@
  */
 (function () {
   'use strict';
-  var app = angular.module('aerocashApp.payment', []);
+  var app = angular.module('aerocashApp.payment');
 
   app.directive('newPayment', function () {
     return {
@@ -17,7 +17,7 @@
         this.save = function () {
           this.model.save(function () {
             console.log('new payment successfully created');
-            Navigation.openMain();
+            Navigation.openMyPayments();
           });
         };
 

@@ -7,7 +7,7 @@
 
   app.factory('Payment', ['$resource', 'restBasePath', function ($resource, restBasePath) {
 
-    var paymentResource = $resource(restBasePath + 'paymentDetails');
+    var paymentResource = $resource(restBasePath + 'paymentDetails/:path/:id');
 
     var PaymentModel = function (json) {
       if (json) {
@@ -17,6 +17,7 @@
         this.startDate = json.startDate;
         this.expDate = json.expDate;
         this.user = json.user;
+        this.id = json._id;
 
         this._paymentName = json.paymentName;
         this._fromAccount = json.fromAccount;
@@ -30,6 +31,7 @@
         this.startDate = null;
         this.expDate = null;
         this.user = null;
+        this.id = null;
 
         this._paymentName = null;
         this._fromAccount = null;
@@ -59,12 +61,18 @@
     };
 
     PaymentModel.prototype.save = function (callback) {
-      paymentResource.save({}, this.restModel(), callback)
+      return paymentResource.save({}, this.restModel(), callback)
     };
 
     return {
       create: function (user) {
         return new PaymentModel({user: user});
+      },
+      load: function (json) {
+        return new PaymentModel(json);
+      },
+      history: function (userId, calback) {
+        return paymentResource.query({path: 'user', id: userId}, calback);
       }
     }
   }]);

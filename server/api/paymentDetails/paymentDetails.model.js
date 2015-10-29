@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-    
+
 //
 //  Payment details schema
 //  paymentName: optional parameter to name the payment for saving
@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 //  phoneNumber: numeric; we can add validation for RO format.
 //  startDate: date when the funds will become available
 //  expDate: date when the PassCode will expire.
-//  
+//
 var paymentDetailsSchema = new Schema({
   paymentName: String,
   fromAccount: String,
@@ -23,8 +23,7 @@ var paymentDetailsSchema = new Schema({
 
 paymentDetailsSchema.statics.findPaymentsForUser = function(userId, callback){
   this.find({ user: userId }, function(err, payments){
-    if (err) { console.log(err); }
-    return callback(payments);
+    return callback(err, payments);
   });
 };
 

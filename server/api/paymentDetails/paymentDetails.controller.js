@@ -17,13 +17,13 @@ exports.index = function(req, res) {
 // Get list of paymentDetails for userId
 exports.payments = function(req, res) {
   //  Search the payments database for all the entries
-  //  created ny a specific user; 
+  //  created by a specific user;
   //  Search is conducted with the URI received from front end.
   console.log('Retrieving payments for ' + req.params.userId);
 
-  PaymentDetails.findPaymentsForUser(req.params.userId, function(err, paymentDetailss){
+  PaymentDetails.findPaymentsForUser(req.params.userId, function(err,paymentDetails){
     if(err) { return handleError(res, err); }
-      return res.status(200).json(paymentDetailss);
+      return res.status(200).json(paymentDetails);
   });
 };
 

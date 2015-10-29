@@ -10,6 +10,9 @@
     return {
       openMain: function () {
         $state.go('main');
+      },
+      openMyPayments: function () {
+        $state.go('template.hstPayment');
       }
     }
   }]);

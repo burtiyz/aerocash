@@ -1,0 +1,20 @@
+<table class="table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>From Account</th>
+    <th>Phone Number</th>
+    <th>Start Date</th>
+    <th>Expiry Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="payment in history.payments | orderBy:'-startDate' track by payment.id">
+    <td>{{payment.paymentName}}</td>
+    <td>{{payment.fromAccount}}</td>
+    <td>{{payment.phoneNumber}}</td>
+    <td>{{payment.startDate}}</td>
+    <td>{{payment.expDate}}</td>
+  </tr>
+  </tbody>
+</table>
