@@ -5,6 +5,8 @@
 
 'use strict';
 
+var q = require('q');
+
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var PaymentDetails = require('../api/paymentDetails/paymentDetails.model');
@@ -36,39 +38,53 @@ Thing.find({}).remove(function() {
   });
 });
 
-
-
-PaymentDetails.find({}).remove(function() {
-  
-  var user = new User({
-    provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'password',
-    salt: 'salt',
-    role: 'test'
-  });
-  
-  PaymentDetails.create({
-    paymentName: "MyPayment1", 
-    fromAccount: "123456789",
-    phoneNumber: "0745111222",
-    startDate:  Date.now(), 
-    expDate: Date.now() ,
-//    user: user
-   },      
-   {
-    paymentName: "MyPayment2",
-    fromAccount: "987654321",
-    phoneNumber: "0763222111",
-    startDate:  Date.now(),
-    expDate: Date.now(),
-//    user: user
-  }, function(err) {
-     if (err) { console.log(err); }
-      console.log('Finished populating MyPayments');
+var user = q.defer();
+User.find({}).remove(function() {
+  User.create({
+      provider: 'local',
+      name: 'Test User',
+      email: 'test@test.com',
+      password: 'test'
+    }, {
+      provider: 'local',
+      role: 'admin',
+      name: 'Admin',
+      email: 'admin@admin.com',
+      password: 'admin'
+    }, function(err, user1, user2) {
+      if (err) {
+        user.reject(err);
+      } else {
+        user.resolve(user1);
+        console.log('finished populating users');
+      }
     }
   );
+});
+
+user.promise.then(function(user){
+  PaymentDetails.find({}).remove(function() {
+    PaymentDetails.create({
+        paymentName: "MyPayment1",
+        fromAccount: "123456789",
+        phoneNumber: "0745111222",
+        startDate: Date.now(),
+        expDate: Date.now(),
+        user: user.id
+      },
+      {
+        paymentName: "MyPayment2",
+        fromAccount: "987654321",
+        phoneNumber: "0763222111",
+        startDate: Date.now(),
+        expDate: Date.now(),
+        user: user.id
+      }, function (err) {
+        if (err) { console.log(err); }
+        console.log('Finished populating MyPayments');
+      }
+    );
+  });
 });
 
 CustomerInfo.find({}).remove(function() {
