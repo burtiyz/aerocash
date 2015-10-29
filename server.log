@@ -1,0 +1,196 @@
+[4mRunning "serve:dist" (serve) task[24m
+
+[4mRunning "clean:dist" (clean) task[24m
+Cleaning .tmp...[32mOK[39m
+
+[4mRunning "concurrent:dist" (concurrent) task[24m
+[32m>> [39mWarning: There are more tasks than your concurrency limit. After this limit[32m
+>> [39mis reached no further tasks will be run until the current tasks are[32m
+>> [39mcompleted. You can adjust the limit in the concurrent task options
+    [33mWarning: [4mRunning "imagemin:dist" (imagemin) task[24m
+    [33mWarning: spawn /home/ubuntu/workspace/aerocash/node_modules/grunt-contrib-imagemin/node_modules/imagemin/node_modules/imagemin-optipng/node_modules/optipng-bin/vendor/optipng ENOENT Use --force to continue.[39m
+    
+    [31mAborted due to warnings.[39m
+    
+    
+    Execution Time (2015-10-29 09:21:17 UTC)
+    loading tasks  589ms  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 30%
+    imagemin:dist   1.4s  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 70%
+    Total 2s Use --force to continue.[39m
+        
+        [31mAborted due to warnings.[39m
+        
+[4mRunning "injector:scripts" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mjs[39m files [90m(18 files)[39m
+
+[4mRunning "injector:css" (injector) task[24m
+[90mMissing option `template`, using `dest` as template instead[39m
+Injecting [32mcss[39m files [90m(6 files)[39m
+
+[4mRunning "wiredep:target" (wiredep) task[24m
+
+[4mRunning "useminPrepare:html" (useminPrepare) task[24m
+Going through [36mclient/index.html[39m to update the config
+Looking for build script HTML comment blocks
+
+[1mConfiguration is now:[22m
+
+[1m  concat:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'.tmp/concat/app/vendor.css'[39m,
+          src: [ [32m'client/bower_components/bootstrap/dist/css/bootstrap.css'[39m ] },
+        { dest: [32m'.tmp/concat/app/app.css'[39m,
+          src: 
+           [ [32m'{.tmp,client}/app/app.css'[39m,
+             [32m'{.tmp,client}/app/account/login/login.css'[39m,
+             [32m'{.tmp,client}/app/admin/admin.css'[39m,
+             [32m'{.tmp,client}/app/app.css'[39m,
+             [32m'{.tmp,client}/app/main/main.css'[39m,
+             [32m'{.tmp,client}/app/pages/template/template.css'[39m,
+             [32m'{.tmp,client}/components/modal/modal.css'[39m ] },
+        { dest: [32m'.tmp/concat/app/vendor.js'[39m,
+          src: 
+           [ [32m'{client,node_modules}/bower_components/jquery/dist/jquery.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular/angular.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular-resource/angular-resource.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular-cookies/angular-cookies.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular-sanitize/angular-sanitize.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular-bootstrap/ui-bootstrap-tpls.js'[39m,
+             [32m'{client,node_modules}/bower_components/lodash/dist/lodash.compat.js'[39m,
+             [32m'{client,node_modules}/bower_components/angular-ui-router/release/angular-ui-router.js'[39m ] },
+        { dest: [32m'.tmp/concat/app/app.js'[39m,
+          src: 
+           [ [32m'.tmp/app/app.js'[39m,
+             [32m'.tmp/app/account/account.js'[39m,
+             [32m'.tmp/app/account/login/login.controller.js'[39m,
+             [32m'.tmp/app/account/settings/settings.controller.js'[39m,
+             [32m'.tmp/app/account/signup/signup.controller.js'[39m,
+             [32m'.tmp/app/admin/admin.controller.js'[39m,
+             [32m'.tmp/app/admin/admin.js'[39m,
+             [32m'.tmp/app/main/main.controller.js'[39m,
+             [32m'.tmp/app/main/main.js'[39m,
+             [32m'.tmp/app/pages/payment/new/newPayment.directive.js'[39m,
+             [32m'.tmp/app/pages/payment/new/newPayment.factory.js'[39m,
+             [32m'.tmp/app/pages/payment/new/newPayment.route.js'[39m,
+             [32m'.tmp/app/pages/template/template.route.js'[39m,
+             [32m'.tmp/components/auth/auth.service.js'[39m,
+             [32m'.tmp/components/auth/user.service.js'[39m,
+             [32m'.tmp/components/modal/modal.service.js'[39m,
+             [32m'.tmp/components/mongoose-error/mongoose-error.directive.js'[39m,
+             [32m'.tmp/components/navbar/navbar.controller.js'[39m,
+             [32m'.tmp/components/navigation/navigation.factory.js'[39m ] } ] } }
+
+[1m  uglify:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'dist/public/app/vendor.js'[39m,
+          src: [ [32m'.tmp/concat/app/vendor.js'[39m ] },
+        { dest: [32m'dist/public/app/app.js'[39m,
+          src: [ [32m'.tmp/concat/app/app.js'[39m ] } ] } }
+
+[1m  cssmin:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'dist/public/app/vendor.css'[39m,
+          src: [ [32m'.tmp/concat/app/vendor.css'[39m ] },
+        { dest: [32m'dist/public/app/app.css'[39m,
+          src: [ [32m'.tmp/concat/app/app.css'[39m ] } ] } }
+
+[4mRunning "autoprefixer:dist" (autoprefixer) task[24m
+
+[4mRunning "ngtemplates:main" (ngtemplates) task[24m
+File [36m.tmp/templates.js[39m created.
+Added [36m.tmp/templates.js[39m to [33m<!-- build:js app/app.js -->[39m
+
+[4mRunning "ngtemplates:tmp" (ngtemplates) task[24m
+[31m>> [39mNo templates found
+File [36m.tmp/tmp-templates.js[39m created.
+Added [36m.tmp/tmp-templates.js[39m to [33m<!-- build:js app/app.js -->[39m
+
+[4mRunning "concat:generated" (concat) task[24m
+File .tmp/concat/app/vendor.css created.
+File .tmp/concat/app/app.css created.
+File .tmp/concat/app/vendor.js created.
+File .tmp/concat/app/app.js created.
+
+[4mRunning "ngAnnotate:dist" (ngAnnotate) task[24m
+[32m>> [39m2 files successfully generated.
+
+[4mRunning "copy:dist" (copy) task[24m
+Created [36m69[39m directories, copied [36m370[39m files
+
+[4mRunning "cdnify:dist" (cdnify) task[24m
+Going through [36mdist/public/index.html[39m to update script refs
+✔ bower_components/angular/angular.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js
+✔ bower_components/angular-cookies/angular-cookies.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-cookies.min.js
+✔ bower_components/angular-resource/angular-resource.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-resource.min.js
+✔ bower_components/angular-sanitize/angular-sanitize.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-sanitize.min.js
+
+[4mRunning "cssmin:generated" (cssmin) task[24m
+File dist/public/app/vendor.css created: 121.22 kB → 99.26 kB
+File dist/public/app/app.css created: 2.59 kB → 2.12 kB
+
+[4mRunning "uglify:generated" (uglify) task[24m
+File dist/public/app/vendor.js created: 1.92 MB → 380.14 kB
+File dist/public/app/app.js created: 27.66 kB → 17.69 kB
+
+[4mRunning "rev:dist" (rev) task[24m
+dist/public/app/app.js [32m>> [39m87d67302.app.js
+dist/public/app/vendor.js [32m>> [39m22d96429.vendor.js
+dist/public/app/app.css [32m>> [39m3d2e149f.app.css
+dist/public/app/vendor.css [32m>> [39m71c590b0.vendor.css
+
+[4mRunning "usemin:html" (usemin) task[24m
+
+[1mProcessing as HTML - dist/public/index.html[22m
+Update the HTML to reference our concat/min/revved script files
+<script src="app/vendor.js" changed to <script src="app/22d96429.vendor.js"
+<script src="app/app.js" changed to <script src="app/87d67302.app.js"
+Update the HTML with the new css filenames
+<link rel="stylesheet" href="app/vendor.css" changed to <link rel="stylesheet" href="app/71c590b0.vendor.css"
+<link rel="stylesheet" href="app/app.css" changed to <link rel="stylesheet" href="app/3d2e149f.app.css"
+Update the HTML with the new img filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+
+[4mRunning "usemin:css" (usemin) task[24m
+
+[1mProcessing as CSS - dist/public/app/3d2e149f.app.css[22m
+Update the CSS to reference our revved images
+
+[1mProcessing as CSS - dist/public/app/71c590b0.vendor.css[22m
+Update the CSS to reference our revved images
+
+[4mRunning "usemin:js" (usemin) task[24m
+
+[1mProcessing as JS - dist/public/app/22d96429.vendor.js[22m
+Update the JS to reference our revved images
+
+[1mProcessing as JS - dist/public/app/87d67302.app.js[22m
+Update the JS to reference our revved images
+
+[4mRunning "env:all" (env) task[24m
+
+[4mRunning "env:prod" (env) task[24m
+
+[4mRunning "express:prod" (express) task[24m
+[36mStarting [39mbackground Express server
+Express server listening on 9000, in production mode
+
+[4mRunning "wait" task[24m
+[32m>> [39mWaiting for server reload...
+Done waiting!
+
+[4mRunning "open:server" (open) task[24m
+
+[4mRunning "express-keepalive" task[24m
+[90mGET /api/things [32m200 [90m26ms - 2b[0m
+[90mGET /assets/images/yeoman.png [33m404 [90m10ms[0m
+[90mGET /api/things [32m200 [90m3ms - 2b[0m
+[90mGET /api/things [36m304 [90m2ms[0m
+[90mGET /assets/images/yeoman.png [33m404 [90m1ms[0m
