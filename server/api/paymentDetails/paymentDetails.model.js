@@ -24,7 +24,6 @@ var paymentDetailsSchema = new Schema({
 paymentDetailsSchema.statics.findPaymentsForUser = function(userId, callback){
   this.find({ user: userId }, function(err, payments){
     if (err) { console.log(err); }
-    //console.log('Payments for user ' + userId + ' are: ' + payments);
     return callback(payments);
   });
 };

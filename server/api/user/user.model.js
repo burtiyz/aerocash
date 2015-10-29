@@ -144,14 +144,4 @@ UserSchema.methods = {
   }
 };
 
-UserSchema.statics.findObjectIdByUserName = function(userId,callback){
-  this.findOne({ name: userId },  function(err, payments){
-    if (err) { console.log(err); }
-    //console.log('Object ID for User name ' + userId + ' is: ' + payments);
-    return callback(payments);
-   });
-  
-};
-
-
 module.exports = mongoose.model('User', UserSchema);
