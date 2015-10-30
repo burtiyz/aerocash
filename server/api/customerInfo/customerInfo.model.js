@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var CustomerInfoSchema = new Schema({
   name: String,
   // the reference must be one to one
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  user: { type: Schema.Types.ObjectId, unique: true , ref: 'User' },
   accountInfo: [ {number: String, balance: Number, currency: String} ]
 });
 
