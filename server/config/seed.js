@@ -38,7 +38,8 @@ Thing.find({}).remove(function() {
   });
 });
 
-var user = q.defer();
+var user1Def = q.defer();
+var user2Def = q.defer();
 
 User.find({}).remove(function() {
   User.create({
@@ -54,16 +55,18 @@ User.find({}).remove(function() {
       password: 'admin'
     }, function(err, user1, user2) {
       if (err) {
-        user.reject(err);
+        user1Def.reject(err);
+        user2Def.reject(err);
       } else {
-        user.resolve(user1);
+        user1Def.resolve(user1);
+        user2Def.resolve(user2);
         console.log('finished populating users');
       }
     }
   );
 });
 
-user.promise.then(function(user){
+user1Def.promise.then(function(user){
   PaymentDetails.find({}).remove(function() {
     PaymentDetails.create({
         paymentName: "MyPayment1",
@@ -88,20 +91,30 @@ user.promise.then(function(user){
   });
 });
 
-user.promise.then(function(user){
+user1Def.promise.then(function(user){
   CustomerInfo.find({}).remove(function() {
     CustomerInfo.create({
       name: "Marius",
       accountInfo: [ { number: "0000985519553", balance: "2355.21", currency: "RON" },
                      { number: "0000985517756", balance: "1200.50", currency: "EUR" } ],
       user: user.id
-    }, {
-      name: "Maxim",
-      accountInfo: [ { number: "00009855171234", balance: "3222.49", currency: "RON" },
-                     { number: "0000985652987", balance: "700.70", currency: "EUR" } ],
-      user: user.id
     }, function(err) {
        if (err) { console.log(err); }
+        console.log('Finished populating Customer Information');
+      }
+    );
+  });
+});
+
+user2Def.promise.then(function(user){
+  CustomerInfo.find({}).remove(function() {
+    CustomerInfo.create({
+        name: "Maxim",
+        accountInfo: [ { number: "00009855171234", balance: "3222.49", currency: "RON" },
+          { number: "0000985652987", balance: "700.70", currency: "EUR" } ],
+        user: user.id
+      }, function(err) {
+        if (err) { console.log(err); }
         console.log('Finished populating Customer Information');
       }
     );

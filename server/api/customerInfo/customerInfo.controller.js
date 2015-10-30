@@ -11,6 +11,14 @@ exports.index = function(req, res) {
   });
 };
 
+// Get customerInfo for userId
+exports.showByUserId = function(req, res) {
+  //TODO implement
+  console.log('Retrieving customerInfo for ' + req.params.userId);
+
+  return res.status(200).json({});
+};
+
 // Get a single customerInfo
 exports.show = function(req, res) {
   CustomerInfo.findById(req.params.id, function (err, customerInfo) {

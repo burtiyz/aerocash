@@ -8,6 +8,7 @@
   app.factory('Payment', ['$resource', 'restBasePath', function ($resource, restBasePath) {
 
     var paymentResource = $resource(restBasePath + 'paymentDetails/:path/:id');
+    var customerResource = $resource(restBasePath + 'customerInfo/:path/:id');
 
     var PaymentModel = function (json) {
       if (json) {
@@ -62,6 +63,14 @@
 
     PaymentModel.prototype.save = function (callback) {
       return paymentResource.save({}, this.restModel(), callback)
+    };
+
+    PaymentModel.prototype.getAvailableAccounts = function (callback) {
+      if (this.userId) {
+        return customerResource.get({path: 'user', userId: this.userId}, callback)
+      } else {
+        callback(null);
+      }
     };
 
     return {
