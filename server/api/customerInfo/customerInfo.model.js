@@ -5,11 +5,8 @@ var mongoose = require('mongoose'),
 
 var CustomerInfoSchema = new Schema({
   name: String,
-  account1Number: String,
-  account1Balance: String,
-  account2Number: String,
-  account2Balance: String,
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  accountInfo: [ {number: String, balance: Number, currency: String} ]
 });
 
 module.exports = mongoose.model('CustomerInfo', CustomerInfoSchema);

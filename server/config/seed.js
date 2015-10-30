@@ -39,6 +39,7 @@ Thing.find({}).remove(function() {
 });
 
 var user = q.defer();
+
 User.find({}).remove(function() {
   User.create({
       provider: 'local',
@@ -87,24 +88,24 @@ user.promise.then(function(user){
   });
 });
 
-CustomerInfo.find({}).remove(function() {
-  CustomerInfo.create({
-    name: "Marius",
-    account1Number: "0000985519553",
-    account1Balance: "2355.21",
-    account2Number:  "0000985517756",
-    account2Balance: "1200.50"
-  }, {
-    name: "Maxim",
-    account1Number: "00009855171234",
-    account1Balance: "3222.49",
-    account2Number:  "0000985652987",
-    account2Balance: "700.70"
-  }, function(err) {
-     if (err) { console.log(err); }
-      console.log('Finished populating Customer Information');
-    }
-  );
+user.promise.then(function(user){
+  CustomerInfo.find({}).remove(function() {
+    CustomerInfo.create({
+      name: "Marius",
+      accountInfo: [ { number: "0000985519553", balance: "2355.21", currency: "RON" },
+                     { number: "0000985517756", balance: "1200.50", currency: "EUR" } ],
+      user: user.id
+    }, {
+      name: "Maxim",
+      accountInfo: [ { number: "00009855171234", balance: "3222.49", currency: "RON" },
+                     { number: "0000985652987", balance: "700.70", currency: "EUR" } ],
+      user: user.id
+    }, function(err) {
+       if (err) { console.log(err); }
+        console.log('Finished populating Customer Information');
+      }
+    );
+  });
 });
 
 ConfirmPayment.find({}).remove(function() {
