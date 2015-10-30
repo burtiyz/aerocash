@@ -10,4 +10,10 @@ var CustomerInfoSchema = new Schema({
   accountInfo: [ {number: String, balance: Number, currency: String} ]
 });
 
+CustomerInfoSchema.statics.findInfoUser = function(userId, callback){
+  this.find({ user: userId }, function(err, info){
+    return callback(err, info);
+  });
+};
+
 module.exports = mongoose.model('CustomerInfo', CustomerInfoSchema);

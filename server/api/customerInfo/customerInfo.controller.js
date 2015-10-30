@@ -13,10 +13,13 @@ exports.index = function(req, res) {
 
 // Get customerInfo for userId
 exports.showByUserId = function(req, res) {
-  //TODO implement
-  console.log('Retrieving customerInfo for ' + req.params.userId);
 
-  return res.status(200).json({});
+  console.log('Retrieving customerInfo for ' + req.params.userId);
+  
+  CustomerInfo.findInfoUser(req.params.userId, function(err,customerDetails){
+    if(err) { return handleError(res, err); }
+      return res.status(200).json(customerDetails);
+  });
 };
 
 // Get a single customerInfo
