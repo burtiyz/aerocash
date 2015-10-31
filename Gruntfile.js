@@ -53,25 +53,7 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= express.options.port %>'
       }
     },
-    less: {
-      development: {
-        options: {
-          compress: true,
-          yuicompress: true,
-          optimization: 2
-        },
-        files:
-          [
-        {
-          expand: true, // Recursive
-          cwd: "client", // The startup directory
-          src: ["{app,components}/**/*.less"], // Source files
-          dest: "client", // Destination
-          ext: ".css" // File extension
-        }
-          ]
-      }
-    },
+
     watch: {
       injectJS: {
         files: [
@@ -97,6 +79,16 @@ module.exports = function (grunt) {
           '<%= yeoman.client %>/{app,components}/**/*.mock.js'
         ],
         tasks: ['newer:jshint:all', 'karma']
+      },
+      injectLess: {
+        files: [
+          '<%= yeoman.client %>/{app,components}/**/*.less'],
+        tasks: ['injector:less']
+      },
+      less: {
+        files: [
+          '<%= yeoman.client %>/{app,components}/**/*.less'],
+        tasks: ['less', 'autoprefixer']
       },
       babel: {
         files: [
@@ -131,13 +123,6 @@ module.exports = function (grunt) {
         options: {
           livereload: true,
           nospawn: true //Without this option specified express won't be reloaded
-        }
-      },
-      styles: {
-        files: ['client/{app,components}/**/*.less'], // which files to watch
-        tasks: ['less'],
-        options: {
-          nospawn: true
         }
       }
     },
@@ -429,9 +414,11 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'babel',
+        'less',
       ],
       test: [
         'babel',
+        'less',
       ],
       debug: {
         tasks: [
@@ -444,6 +431,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'babel',
+        'less',
         'imagemin',
         'svgmin'
       ]
@@ -505,6 +493,22 @@ module.exports = function (grunt) {
       }
     },
 
+    // Compiles Less to CSS
+    less: {
+      options: {
+        paths: [
+          '<%= yeoman.client %>/bower_components',
+          '<%= yeoman.client %>/app',
+          '<%= yeoman.client %>/components'
+        ]
+      },
+      server: {
+        files: {
+          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.less'
+        }
+      },
+    },
+
     injector: {
       options: {
 
@@ -531,6 +535,25 @@ module.exports = function (grunt) {
                  '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js'               
                ]
             ]
+        }
+      },
+
+      // Inject component less into app.less
+      less: {
+        options: {
+          transform: function(filePath) {
+            filePath = filePath.replace('/client/app/', '');
+            filePath = filePath.replace('/client/components/', '');
+            return '@import \'' + filePath + '\';';
+          },
+          starttag: '// injector',
+          endtag: '// endinjector'
+        },
+        files: {
+          '<%= yeoman.client %>/app/app.less': [
+            '<%= yeoman.client %>/{app,components}/**/*.less',
+            '!<%= yeoman.client %>/app/app.less'
+          ]
         }
       },
 
@@ -579,6 +602,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
+        'injector:less',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -590,6 +614,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
+      'injector:less',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -597,7 +622,6 @@ module.exports = function (grunt) {
       'express:dev',
       'wait',
       'open',
-      'less',
       'watch'
     ]);
   });
@@ -620,6 +644,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
+        'injector:less',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -632,6 +657,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
+        'injector:less',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -649,6 +675,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'injector:less',
     'concurrent:dist',
     'injector',
     'wiredep',

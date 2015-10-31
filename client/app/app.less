@@ -1,0 +1,77 @@
+@import 'bootstrap/less/bootstrap.less';
+@import 'font-awesome/less/font-awesome.less';
+
+@icon-font-path: '/bower_components/bootstrap/fonts/';
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+//colors
+@orange: #f16321;
+@white: #ffffff;
+
+//dimens
+@login-width: 400px;
+@margin-small:10px;
+@margin-medium:20px;
+@margin-large:40px;
+
+
+.margin {
+    &.top {
+        margin-top: @margin-small;
+        &.medium {
+            margin-top: @margin-medium;
+        }
+        &.large {
+            margin-top: @margin-large;
+        }
+    }
+
+    &.bottom {
+        margin-bottom: @margin-small;
+        &.medium {
+            margin-bottom: @margin-medium;
+        }
+        &.large {
+            margin-bottom: @margin-large;
+        }
+    }
+
+    &.left {
+        margin-left: @margin-small;
+        &.medium {
+            margin-left: @margin-medium;
+        }
+        &.large {
+            margin-left: @margin-large;
+        }
+    }
+    &.right {
+        margin-right: @margin-small;
+        &.medium {
+            margin-right: @margin-medium;
+        }
+        &.large {
+            margin-right: @margin-large;
+        }
+    }
+}
+
+
+// injector
+@import 'account/login/login.less';
+@import 'admin/admin.less';
+@import 'main/main.less';
+@import 'modal/modal.less';
+@import 'navbar/navbar.less';
+// endinjector

@@ -4,10 +4,6 @@ angular.module('aerocashApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [
       {
-        'title': 'Home',
-        'link': '/'
-      },
-      {
         'title': 'Payment',
         'loggedIn': true,
         'link': '/payment',

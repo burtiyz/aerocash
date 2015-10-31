@@ -1,0 +1,56 @@
+// Colors
+// --------------------------------------------------
+
+@btnText: #fff;
+@btnTextAlt: #000;
+
+@btnFacebookBackground: #3B5998;
+@btnFacebookBackgroundHighlight: #133783;
+@btnTwitterBackground: #2daddc;
+@btnTwitterBackgroundHighlight: #0271bf;
+@btnGooglePlusBackground: #dd4b39;
+@btnGooglePlusBackgroundHighlight: #c53727;
+@btnGithubBackground: #fafafa;
+@btnGithubBackgroundHighlight: #ccc;
+
+// Social buttons
+// --------------------------------------------------
+
+.btn-facebook {
+  .button-variant(@btnText; @btnFacebookBackgroundHighlight; @btnFacebookBackgroundHighlight);
+}
+
+.btn-twitter {
+  .button-variant(@btnText; @btnTwitterBackground; @btnTwitterBackgroundHighlight);
+}
+
+.btn-google-plus {
+  .button-variant(@btnText; @btnGooglePlusBackground; @btnGooglePlusBackgroundHighlight);
+}
+
+.btn-github {
+  .button-variant(@btnTextAlt; @btnGithubBackground; @btnGithubBackgroundHighlight);
+}
+
+.center-dialog {
+  max-width: @login-width;
+}
+
+.btn-orange {
+  .button-variant(@white; @orange; @orange);
+}
+
+.text-spacer {
+  position: relative;
+  text-align: center;
+
+  .text-spacer-content {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    background-color: @white;
+    margin: auto;
+    padding-left: @margin-small;
+    padding-right: @margin-small;
+  }
+}
