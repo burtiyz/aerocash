@@ -53,6 +53,25 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= express.options.port %>'
       }
     },
+    less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files:
+          [
+        {
+          expand: true, // Recursive
+          cwd: "client", // The startup directory
+          src: ["{app,components}/**/*.less"], // Source files
+          dest: "client", // Destination
+          ext: ".css" // File extension
+        }
+          ]
+      }
+    },
     watch: {
       injectJS: {
         files: [
@@ -112,6 +131,13 @@ module.exports = function (grunt) {
         options: {
           livereload: true,
           nospawn: true //Without this option specified express won't be reloaded
+        }
+      },
+      styles: {
+        files: ['client/{app,components}/**/*.less'], // which files to watch
+        tasks: ['less'],
+        options: {
+          nospawn: true
         }
       }
     },
@@ -571,6 +597,7 @@ module.exports = function (grunt) {
       'express:dev',
       'wait',
       'open',
+      'less',
       'watch'
     ]);
   });
