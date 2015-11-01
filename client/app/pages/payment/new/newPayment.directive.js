@@ -10,9 +10,10 @@
       restrict: 'E',
       templateUrl: 'app/pages/payment/new/newPayment.html',
       scope: {},
-      controller: ['Auth', 'Navigation', 'Payment', function (Auth, Navigation, Payment) {
+      controller: ['Auth', 'Navigation', 'Payment', 'Customer', function (Auth, Navigation, Payment, Customer) {
         var _ctrl = this;
         this.model = null;
+        this.accounts = [];
 
         this.save = function () {
           this.model.save(function () {
@@ -23,6 +24,11 @@
 
         function _init() {
           _ctrl.model = Payment.create(Auth.getCurrentUser()._id);
+          Customer.getByUserId(Auth.getCurrentUser()._id, function (customer) {
+            _.forEach(customer.accountInfo, function (account) {
+              _ctrl.accounts.push(account);
+            });
+          });
         }
 
         _init();

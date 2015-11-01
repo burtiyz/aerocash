@@ -12,7 +12,12 @@
       <label for="account">From Account</label>
     </div>
     <div class="col-md-2">
-      <input id="account" ng-model="payment.model.fromAccount" required>
+      <select id="account" name="account" ng-model="payment.model.fromAccount" required>
+        <option></option>
+        <option ng-repeat="account in payment.accounts track by account.number" value="{{account.number}}">
+          {{account.number}}
+        </option>
+      </select>
     </div>
   </div>
   <div class="row">
