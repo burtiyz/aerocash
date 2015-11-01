@@ -11,7 +11,7 @@ var CustomerInfoSchema = new Schema({
 });
 
 CustomerInfoSchema.statics.findInfoUser = function(userId, callback){
-  this.find({ user: userId }, function(err, info){
+  this.findOne({ user: userId }, function(err, info){
     return callback(err, info);
   });
 };

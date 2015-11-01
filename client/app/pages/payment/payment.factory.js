@@ -8,38 +8,21 @@
   app.factory('Payment', ['$resource', 'restBasePath', function ($resource, restBasePath) {
 
     var paymentResource = $resource(restBasePath + 'paymentDetails/:path/:id');
-    var customerResource = $resource(restBasePath + 'customerInfo/:path/:id');
 
     var PaymentModel = function (json) {
-      if (json) {
-        this.paymentName = json.paymentName;
-        this.fromAccount = json.fromAccount;
-        this.phoneNumber = json.phoneNumber;
-        this.startDate = json.startDate;
-        this.expDate = json.expDate;
-        this.user = json.user;
-        this.id = json._id;
+      this.paymentName = json.paymentName;
+      this.fromAccount = json.fromAccount;
+      this.phoneNumber = json.phoneNumber;
+      this.startDate = json.startDate;
+      this.expDate = json.expDate;
+      this.user = json.user;
+      this.id = json._id;
 
-        this._paymentName = json.paymentName;
-        this._fromAccount = json.fromAccount;
-        this._phoneNumber = json.phoneNumber;
-        this._startDate = json.startDate;
-        this._expDate = json.expDate;
-      } else {
-        this.paymentName = null;
-        this.fromAccount = null;
-        this.phoneNumber = null;
-        this.startDate = null;
-        this.expDate = null;
-        this.user = null;
-        this.id = null;
-
-        this._paymentName = null;
-        this._fromAccount = null;
-        this._phoneNumber = null;
-        this._startDate = null;
-        this._expDate = null;
-      }
+      this._paymentName = json.paymentName;
+      this._fromAccount = json.fromAccount;
+      this._phoneNumber = json.phoneNumber;
+      this._startDate = json.startDate;
+      this._expDate = json.expDate;
     };
 
     PaymentModel.prototype.hasChanges = function () {
@@ -63,14 +46,6 @@
 
     PaymentModel.prototype.save = function (callback) {
       return paymentResource.save({}, this.restModel(), callback)
-    };
-
-    PaymentModel.prototype.getAvailableAccounts = function (callback) {
-      if (this.userId) {
-        return customerResource.get({path: 'user', userId: this.userId}, callback)
-      } else {
-        callback(null);
-      }
     };
 
     return {
