@@ -19,8 +19,8 @@
   * `client/app/myroute/myroute.controller.js`
   * `client/app/myroute/myroute.html`
 * Heroku deployment:
-  * `yo angular-fullstack:heroku` to deploy the app on heroku
-  * `heroku addons:create mongolab` for DB setup on heroku
+  * `grunt build:dist` to build the app
+  * `grunt buildcontrol:heroku` to deploy the app on heroku
   
 #### Git cheatsheet
   * Stage changes for commit: `git add .`
