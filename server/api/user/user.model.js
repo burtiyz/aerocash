@@ -13,6 +13,7 @@ var UserSchema = new Schema({
     default: 'user'
   },
   hashedPassword: String,
+  ingToken: String,
   provider: String,
   salt: String,
   facebook: {},

@@ -92,6 +92,19 @@ angular.module('aerocashApp')
         }).$promise;
       },
 
+      linkUser: function(ingToken, callback){
+        var cb = callback || angular.noop;
+
+        return User.sync({ id: currentUser._id }, {
+          ingToken: ingToken
+        }, function(user) {
+          currentUser = user;
+          return cb(user);
+        }, function(err) {
+          return cb(err);
+        }).$promise;
+      },
+
       /**
        * Gets all available info on authenticated user
        *

@@ -79,6 +79,22 @@ exports.changePassword = function(req, res, next) {
   });
 };
 
+// sync customer info
+exports.link = function(req, res, next) {
+  var userId = req.user._id;
+  var ingToken = String(req.body.ingToken);
+
+  User.findById(userId, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.status(401).send('Unauthorized');
+    user.ingToken = ingToken;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.status(200).json(user);
+    });
+  });
+};
+
 /**
  * Get my info
  */

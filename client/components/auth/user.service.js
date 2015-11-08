@@ -17,6 +17,12 @@ angular.module('aerocashApp')
         params: {
           id:'me'
         }
+      },
+      sync:{
+        method: 'PUT',
+        params: {
+          controller:'link'
+        }
       }
 	  });
   });
