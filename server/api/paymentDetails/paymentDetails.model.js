@@ -18,6 +18,7 @@ var paymentDetailsSchema = new Schema({
   phoneNumber: Number,
   startDate: Date,
   expDate: Date,
+  amount: Number,
   createdAt: { type: Date, default: Date.now() },
   user: { type: Schema.Types.ObjectId, ref: 'User' }
 });

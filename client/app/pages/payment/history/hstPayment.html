@@ -3,6 +3,7 @@
   <tr>
     <th>Name</th>
     <th>From Account</th>
+    <th>Amount</th>
     <th>Phone Number</th>
     <th>Start Date</th>
     <th>Expiry Date</th>
@@ -12,6 +13,7 @@
   <tr ng-repeat="payment in history.payments | orderBy:'-startDate' track by payment.id">
     <td>{{payment.paymentName}}</td>
     <td>{{payment.fromAccount}}</td>
+    <td>{{payment.amount}}</td>
     <td>{{payment.phoneNumber}}</td>
     <td>{{payment.startDate}}</td>
     <td>{{payment.expDate}}</td>

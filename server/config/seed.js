@@ -70,16 +70,18 @@ user1Def.promise.then(function(user){
   PaymentDetails.find({}).remove(function() {
     PaymentDetails.create({
         paymentName: "MyPayment1",
-        fromAccount: "123456789",
+        fromAccount: "0000985519553",
         phoneNumber: "0745111222",
+        amount: 50,
         startDate: Date.now(),
         expDate: Date.now(),
         user: user.id
       },
       {
         paymentName: "MyPayment2",
-        fromAccount: "987654321",
+        fromAccount: "0000985517756",
         phoneNumber: "0763222111",
+        amount: 100,
         startDate: Date.now(),
         expDate: Date.now(),
         user: user.id
