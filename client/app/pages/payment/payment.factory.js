@@ -39,7 +39,7 @@
     PaymentModel.prototype.restModel = function () {
       return {
         paymentName: this.paymentName,
-        fromAccount: this.fromAccount,
+        fromAccount: this.fromAccount.number,
         amount: this.amount,
         phoneNumber: this.phoneNumber,
         startDate: this.startDate,
@@ -50,6 +50,13 @@
 
     PaymentModel.prototype.save = function (callback) {
       return paymentResource.save({}, this.restModel(), callback)
+    };
+
+    PaymentModel.prototype.isValid = function () {
+      if (this.fromAccount && this.amount) {
+        return this.fromAccount.balance >= this.amount;
+      }
+      return true;
     };
 
     return {

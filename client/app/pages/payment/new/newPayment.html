@@ -1,4 +1,4 @@
-<form ng-submit="!payment.model.hasChanges() || payment.save()">
+<form ng-submit="!payment.model.hasChanges() || !payment.model.isValid() || payment.save()">
   <div class="row">
     <div class="col-md-2">
       <label for="name">Name</label>
@@ -12,11 +12,9 @@
       <label for="account">From Account</label>
     </div>
     <div class="col-md-2">
-      <select id="account" name="account" ng-model="payment.model.fromAccount" required>
+      <select id="account" name="account" ng-model="payment.model.fromAccount"
+              ng-options="account as account.number for account in payment.accounts track by account.number" required>
         <option></option>
-        <option ng-repeat="account in payment.accounts track by account.number" value="{{account.number}}">
-          {{account.number}}
-        </option>
       </select>
     </div>
   </div>
@@ -24,8 +22,11 @@
     <div class="col-md-2">
       <label for="amount">Amount</label>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <input id="amount" ng-model="payment.model.amount" type="number" required>
+      <span class="{{!payment.model.isValid() ? 'amountNok' : 'amountOk'}}">
+        Available: {{payment.model.fromAccount.balance}} {{payment.model.fromAccount.currency}}
+      </span>
     </div>
   </div>
   <div class="row">
@@ -52,5 +53,7 @@
       <input id="expiry" ng-model="payment.model.expDate" type="date" required>
     </div>
   </div>
-  <button type="submit" class="btn btn-default" ng-disabled="!payment.model.hasChanges()">Save</button>
+  <button type="submit" class="btn btn-default" ng-disabled="!payment.model.hasChanges() || !payment.model.isValid()">
+    Save
+  </button>
 </form>
