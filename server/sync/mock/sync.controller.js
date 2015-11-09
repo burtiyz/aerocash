@@ -1,6 +1,7 @@
 /**
  * Created by marius on 08/11/15.
  */
+var _ = require('lodash');
 
 var AccountInfo = require('../ingAccount.model');
 var CustomerInfo = require('../ingCustomer.model');
@@ -24,4 +25,13 @@ createCustomerInfo();
 // get customer info from ING
 module.exports.getCustomerInfo = function (ingToken) {
   return customerInfos[ingToken];
+};
+
+// send a payment to ING
+module.exports.updateCustomerInfo = function (ingToken, payment) {
+  var customerInfo = customerInfos[ingToken];
+  var account = _.find(customerInfo.accountInfo, {number: payment.fromAccount});
+  account.balance -= payment.amount;
+
+  return customerInfo;
 };

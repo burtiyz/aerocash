@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-4">
       <input id="amount" ng-model="payment.model.amount" type="number" required>
-      <span class="{{!payment.model.isValid() ? 'amountNok' : 'amountOk'}}">
+      <span class="{{!payment.model.isValid() ? 'amountNok' : 'amountOk'}}" ng-show="payment.model.fromAccount">
         Available: {{payment.model.fromAccount.balance}} {{payment.model.fromAccount.currency}}
       </span>
     </div>
