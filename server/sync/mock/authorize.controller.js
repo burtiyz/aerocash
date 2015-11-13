@@ -9,17 +9,17 @@ var sessionCode = Math.floor( Math.random() * (HIGH - LOW) + LOW );
 
 module.exports = {
 
-    tokenAuthorization: function(){
+    generateAuthorizationToken: function(){
         // generate random 8 digit auth code
         return Math.floor( Math.random() * (HIGH * 100 - LOW * 100) + LOW * 100 );
     },
-    
+
     generateSessionCode: function(LOW, HIGH){
         return Math.floor( Math.random() * (HIGH - LOW) + LOW );
     },
-    
+
     returnSessionCode: function(){
         return sessionCode;
     }
-    
-}
+
+};

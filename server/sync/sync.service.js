@@ -8,6 +8,7 @@ var _ = require('lodash');
 var compose = require('composable-middleware');
 
 var controller = require('./mock/sync.controller');
+var authorize = require('./mock/authorize.controller');
 var CustomerInfo = require('../api/customerInfo/customerInfo.model');
 
 module.exports.initCustomerInfo = function (req, res, next) {
@@ -22,6 +23,8 @@ module.exports.initCustomerInfo = function (req, res, next) {
 };
 
 module.exports.sendPayment = function (req, res, next) {
+  // generate authorization code
+  req.body.authorizationCode = authorize.generateAuthorizationToken();
   var updatedCustomer = controller.updateCustomerInfo(req.user.ingToken, req.body);
   if (!updatedCustomer) {return handleError(res, "Token not found!");}
 

@@ -19,8 +19,10 @@ var paymentDetailsSchema = new Schema({
   startDate: Date,
   expDate: Date,
   amount: Number,
-  createdAt: { type: Date, default: Date.now() },
-  user: { type: Schema.Types.ObjectId, ref: 'User' }
+  authorizationCode: String,
+  processed: {type: Boolean, default: false},
+  createdAt: {type: Date, default: Date.now()},
+  user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 paymentDetailsSchema.statics.findPaymentsForUser = function(userId, callback){
