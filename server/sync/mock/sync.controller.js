@@ -35,3 +35,7 @@ module.exports.updateCustomerInfo = function (ingToken, payment) {
 
   return customerInfo;
 };
+
+module.exports.finalizePayment = function(payment){
+  return true;
+};

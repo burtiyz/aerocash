@@ -39,6 +39,14 @@ module.exports.sendPayment = function (req, res, next) {
   });
 };
 
+module.exports.processPayment = function (req, res, next) {
+  if (controller.finalizePayment(req.body.payment)) {
+    return next();
+  } else {
+    return res.status(404).send('Not Found');
+  }
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }
