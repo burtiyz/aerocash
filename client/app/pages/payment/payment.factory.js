@@ -16,6 +16,8 @@
       this.phoneNumber = json.phoneNumber;
       this.startDate = json.startDate;
       this.expDate = json.expDate;
+      this.authorizationCode = json.authorizationCode;
+      this.processed = json.processed;
       this.user = json.user;
       this.id = json._id;
 

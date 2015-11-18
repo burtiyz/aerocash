@@ -11,7 +11,6 @@ var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var PaymentDetails = require('../api/paymentDetails/paymentDetails.model');
 var CustomerInfo = require('../api/customerInfo/customerInfo.model');
-var ConfirmPayment = require('../api/confirmPayment/confirmPayment.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -91,14 +90,4 @@ user1Def.promise.then(function(user){
       }
     );
   });
-});
-
-ConfirmPayment.find({}).remove(function() {
-  ConfirmPayment.create({
-    // data generation is handled in the model definition
-    }, function(err) {
-     if (err) { console.log(err); }
-      console.log('Finished populating Payment Confirmation Information');
-    }
-  );
 });
