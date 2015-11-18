@@ -9,7 +9,7 @@ var project = tr.initProjectById(PROJECT_ID);
 
 // send message
 module.exports = {
-    sendSMS: function(number, content){
+    sendSMS: function(number, content, callback){
         project.sendMessage({
         to_number: number, 
         content: content
@@ -17,6 +17,7 @@ module.exports = {
                 if (err) throw err;
                 console.log(message);
                 console.log("SMS Sent");
+                return(callback);
             });
         }
 };

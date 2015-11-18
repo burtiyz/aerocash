@@ -9,7 +9,6 @@ var telerivet = require("./telerivet");
 exports.index = function(req, res) {
   PaymentDetails.find(function (err, paymentDetailss) {
     if(err) { return handleError(res, err); }
-    //sendSMS(req,res);
     return res.status(200).json(paymentDetailss);
   });
 };
@@ -40,6 +39,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   PaymentDetails.create(req.body, function(err, paymentDetails) {
     if(err) { return handleError(res, err); }
+    sendSMS(paymentDetails);
     return res.status(201).json(paymentDetails);
   });
 };
@@ -71,20 +71,10 @@ exports.destroy = function(req, res) {
 };
 
 // helper function to send the SMS;
-// currently called from the index function, for testing purposes;
-// call will be adjusted when the proper api calls are developed
-function sendSMS(req, res){
+function sendSMS(paymentDetails){
 
-    // my number  var number = '421919325773';
-
-    //  Maxim
-    // var number = '421944556944';
-    // Manu var number = '40740156733';
-    // Calin var number = '40762234111';
-    var number = '40745119214';
-    //var number = '40726787999';
-    var content = 'ING AeroCash Online Service PassCode: 45228764. Thank you for using our services!';
-    telerivet.sendSMS(number,content);
+    var content = 'ING AeroCash Online Service PassCode: '+ paymentDetails.authorizationCode +'. Thank you for using our services!';
+    telerivet.sendSMS(paymentDetails.phoneNumber,content);
 }
 
 function handleError(res, err) {
